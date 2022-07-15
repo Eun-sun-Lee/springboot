@@ -1,9 +1,11 @@
 package hello.hellospring.controller;
 
+import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class MemberController {
@@ -27,5 +29,15 @@ public class MemberController {
     @GetMapping(value="/members/new")
     public String createForm() {
         return "members/createMemberForm";
+    }
+
+    @PostMapping("/members/new")
+    public String create(MemberForm form) {
+        Member member=new Member(); //입력 ? / 새로운 객체를 만들어야 할 땐 무조건 POST 방식
+        member.setName(form.getName()); //member를 만듦.
+        //System.out.println("member= " + member);
+        memberService.join(member); //member를 넘김.
+        return "redirect:/"; //홈화면으로 보냄.
+
     }
 }
