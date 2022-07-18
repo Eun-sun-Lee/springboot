@@ -4,8 +4,11 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class MemberController {
@@ -35,9 +38,14 @@ public class MemberController {
     public String create(MemberForm form) {
         Member member=new Member(); //입력 ? / 새로운 객체를 만들어야 할 땐 무조건 POST 방식
         member.setName(form.getName()); //member를 만듦.
-        //System.out.println("member= " + member);
+        //System.out.println("member= " + member.getName());
         memberService.join(member); //member를 넘김.
         return "redirect:/"; //홈화면으로 보냄.
-
+    }
+    @GetMapping("/members")
+    public String list(Model model){
+        List<Member> members=memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
     }
 }

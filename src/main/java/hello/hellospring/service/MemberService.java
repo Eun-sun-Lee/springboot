@@ -12,7 +12,7 @@ import java.util.Optional;
 
 //스프링 컨테이너에 memberService를 등록해줌.
 public class MemberService {
-    private final MemberRepository memberRepository;
+    private MemberRepository memberRepository;
     //memberRepository가 필요하다고 인지함 -> 스프링 컨테이너에 있는 memberRepository를 넣어준다.
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository=memberRepository;
