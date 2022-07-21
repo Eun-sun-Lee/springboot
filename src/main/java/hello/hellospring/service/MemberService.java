@@ -6,10 +6,11 @@ import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-
+@Transactional //Jpql을 사용하여 데이터 저장, 변경할 때 필요
 //스프링 컨테이너에 memberService를 등록해줌.
 public class MemberService {
     private MemberRepository memberRepository;
