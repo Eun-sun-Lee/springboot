@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Aspect //AOP
 @Component
-public class TimeTraceAop {
+public class TimeTraceAop { //메소드 호출시마다 실행
     @Around("execution(* hello.hellospring..*(..))") //패키지 하위에 전부 적용
     public Object execute(ProceedingJoinPoint joinPoint) throws Throwable {
         long start= System.currentTimeMillis();
